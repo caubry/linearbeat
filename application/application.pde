@@ -8,9 +8,9 @@ void setup() {
   rectMode( CENTER );
   frameRate( 24 );
   
-  maxim = new Maxim( this );
+  maxim       = new Maxim( this );
   lineManager = new LineManager();
-  character = new Character();
+  character   = new Character();
 }
 
 void draw() {
