@@ -3,14 +3,14 @@ LineManager lineManager;
 Character character;
 
 void setup() {
+  
   size( 300, 600 );
   background( 50 );
   rectMode( CENTER );
-  frameRate( 24 );
-  
+  frameRate( 15 );
+  character   = new Character();
   maxim       = new Maxim( this );
   lineManager = new LineManager();
-  character   = new Character();
 }
 
 void draw() {
