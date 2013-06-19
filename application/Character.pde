@@ -1,34 +1,43 @@
+import java.util.HashSet;
+
+import sprites.utils.*;
+import sprites.maths.*;
+import sprites.*;
+
 public class Character {
-
-  float MIN_VALUE = 80;
-  float value     = MIN_VALUE;
   
-  float radius = 50.0;
-  int X, Y;
-  int nX, nY;
-  int delay = 16;
+  int tcol = 3;
+  private PApplet processing;
+  Sprite player;
+  StopWatch timer;
 
-  PShape player;
-
-  public Character() {
-    X = width / 2;
-    Y = height / 2;
-    nX = X;
-    nY = Y;  
-
-    player  = loadShape("player.svg");
+  public Character(PApplet processing) {
+    this.processing = processing;
+    player = new Sprite(processing, "player.png", 8, 8, 100);
+    //player.setAnimInterval(0);
+    player.setFrameSequence(tcol * 8 + 7, tcol * 8);
+   
+    setup();
   } 
+  
+  private void setup() {
+    player.setXY(150, 300);
+    //player.setVelXY(0.0f, 0);
+    //player.setDomain(0, height-80, width, height, Sprite.HALT);
+    player.stopImageAnim();
+  }
 
   public void onTick() {
-    value = value + sin( frameCount/4 );
+    updateAllSprites(0.16);
+    player.draw();
+//     player.setFrameSequence(tcol * 8 + 7, tcol * 8, 0.1f, 3);
+    int newFrame = player.getFrame() % 8 + tcol * 8;
+    player.setFrame(newFrame);
+    //println(newFrame);
+  }
   
-    X += (nX-X)/delay;
-    Y += (nY-Y)/delay;
-
-    background(51);
-    ellipse( X, Y, value, value );  
-    shape(player, -10, 140, 320, 320);
-    fill( 222, 222, 222, 222 );
+  private void updateAllSprites(float deltaTime) {
+    player.update(deltaTime);
   }
 }
 
