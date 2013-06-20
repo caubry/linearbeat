@@ -3,7 +3,6 @@ LineManager lineManager;
 Character character;
 
 void setup() {
-  
   size( 300, 600 );
   background( 50 );
   rectMode( CENTER );
