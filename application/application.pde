@@ -7,6 +7,7 @@ void setup() {
   size( 300, 600 );
   background( 50 );
   rectMode( CENTER );
+  frameRate(24);
   
   character   = new Character( this );
   maxim       = new Maxim( this );
