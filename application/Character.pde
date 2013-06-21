@@ -1,5 +1,4 @@
 import java.util.HashSet;
-
 import sprites.utils.*;
 import sprites.maths.*;
 import sprites.*;
@@ -8,28 +7,29 @@ public class Character {
   
   private PApplet processing;
   Sprite player;
-  int newFrame = 0;
+  StopWatch sw;
 
   public Character(PApplet processing) {
     this.processing = processing;
-    player = new Sprite(processing, "player.png", 8, 8, 100);
     setup();
   } 
   
   private void setup() {
-    player.setXY(150, 300);
-    player.setFrameSequence(0, 8, 300);
+    sw     = new StopWatch();
+    player = new Sprite(processing, "player.png", 8, 8, 0);
+    player.setDomain(-100, -60, width + 100, height - 100, Sprite.REBOUND);
+    player.setXY(150, 150);
+    player.setFrameSequence(0, 7, 0.2f);
+    registerMethod("pre", this);
+    cursor(CROSS);
+  }
+
+  public void pre() {
+    float elapsedTime = (float) sw.getElapsedTime();
+    S4P.updateSprites(elapsedTime);
   }
 
   public void onTick() {
-//    newFrame++;
-//    if (newFrame > 7)
-//    {
-//      newFrame = 0;
-//    }
-//    player.setFrame(newFrame);
-    player.draw(); 
-   player.updateImageAnimation(2); 
+    S4P.drawSprites();
   }
 }
-

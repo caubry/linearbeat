@@ -5,7 +5,10 @@ public class LineManager {
   Line line3;
   
   public LineManager() {
-    
+   
+  }
+  
+  public void onTick() {
     line1 = new Line();
     line2 = new Line();
     line3 = new Line();
