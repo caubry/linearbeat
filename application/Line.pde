@@ -1,41 +1,34 @@
+import sprites.utils.*;
+import sprites.maths.*;
+import sprites.*;
+
 public class Line {
   
-  private int LINE_WEIGHT = 5;
-  private int LINE_YPOS   = 0;
-  private int Y_AXIS      = 1;
-  private int X_AXIS      = 2;
-  private color COLOR_INIT  = 190;
-  private color lineColour;
+  private PApplet processing;
+  Sprite line;
+  int y = 250;
+  int x = 0;
+
+  public Line(PApplet processing) {
+    this.processing = processing;
+  } 
   
-  public Line() {
-    lineColour = COLOR_INIT;
+  /*
+  ** Setup the line identity
+  ** And render the sprite
+  */
+  public void renderSprite() { 
+    line = new Sprite(processing, "line.png", 10, 1, 0);
+    line.setXY(this.x, this.y);
+    line.setFrameSequence(0, 7, 0.2f);
+    line.stopImageAnim();
   }
   
-  public void setLineColour(color colour) {
-    this.lineColour = colour;
-  }
-  
-  public void addLine(int xPos) {
-    setGradient( ( xPos - ( LINE_WEIGHT / 2 ) ), LINE_YPOS, LINE_WEIGHT, height, this.lineColour, this.lineColour, Y_AXIS );
-  }
-  
-  private void setGradient( int x, int y, int w, int h, color c1, color c2, int axis ) {
-    noFill();
-    if (axis == Y_AXIS) {  
-      for (int i = y; i <= y+h; i++) {
-        float inter = map(i, y, y+h, 0, 1);
-        color c = lerpColor(c1, c2, inter);
-        stroke(c);
-        line(x, i, x+w, i);
-      }
-    }  
-    else if (axis == X_AXIS) { 
-      for (int i = x; i <= x+w; i++) {
-        float inter = map(i, x, x+w, 0, 1);
-        color c = lerpColor(c1, c2, inter);
-        stroke(c);
-        line(i, y, i, y+h);
-      }
-    }
+  /*
+  ** Set the x position of a line
+  ** Needs to be called before renderSprite()
+  */ 
+  public void setX(int x) {
+    this.x = x;
   }
 }

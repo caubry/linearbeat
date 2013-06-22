@@ -1,20 +1,31 @@
 public class LineManager {
   
+  private PApplet processing;
   Line line1;
   Line line2;
   Line line3;
   
-  public LineManager() {
-   
+  public LineManager(PApplet processing) {
+    this.processing = processing;
+    init();
   }
   
-  public void onTick() {
-    line1 = new Line();
-    line2 = new Line();
-    line3 = new Line();
+  /*
+  ** Instantiate a line
+  ** Set X Position
+  ** Render the Sprite
+  */
+  private void init() {
+    line1 = new Line(processing);
+    line1.setX(150);
+    line1.renderSprite();
     
-    line1.addLine(width/4);
-    line2.addLine(width/2);
-    line3.addLine(( width / 2 ) + ( width / 4 ));
+    line2 = new Line(processing);
+    line2.setX(10);
+    line2.renderSprite();
+    
+    line3 = new Line(processing);
+    line3.setX(200);
+    line3.renderSprite();
   }
 }
