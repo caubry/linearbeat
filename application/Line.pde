@@ -63,6 +63,13 @@ public class Line {
   }
   
   /**
+   *  Getter - Line animation frame
+   */
+  public int frameNbr() {
+    return line.getFrame();
+  }
+  
+  /**
    *  Set the x position of a line 
    *  Needs to be called before renderSprite()
    */

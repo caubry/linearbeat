@@ -27,7 +27,7 @@ public class Character {
   }
   
   public void onTick() {
-    player.setXY(xPos + (player.getWidth() / nbrFrames), 450);
+    player.setXY(xPos + (player.getWidth() / nbrFrames), height / 2);
   }
   
   public void setX(int xPos) {

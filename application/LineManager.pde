@@ -60,6 +60,16 @@ public class LineManager {
     }
     return null;
   }
+  
+  public int getLineFrameNbr() {
+    for (int i = 0; i < lines.size(); i++) {
+      if (lines.get(i).hasLineCollided())
+      {
+        return lines.get(i).frameNbr();
+      }
+    }
+    return 0;
+  }
 }
 
 
