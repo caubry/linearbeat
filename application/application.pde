@@ -43,7 +43,6 @@ void draw() {
    sounds.onTick();
    S4P.drawSprites();
    lineManager.onTick();
-//   lineManager.getLineFrameNbr();
    character.setX(characterXPos);
    character.onTick();
 }
@@ -52,5 +51,6 @@ void mousePressed() {
    if (lineManager.getLineCollided() != null) {
      currentLineCollided = lineManager.getLineCollided();
      characterXPos = currentLineCollided.getX();
+     sounds.soundArray().get(lineManager.getLineFrameNbr()).play();
    }
 }
